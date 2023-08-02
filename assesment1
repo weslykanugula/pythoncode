@@ -43,3 +43,21 @@ print_shortest_substrings(s, x)
 x = 8
 print("\nx =", x)
 print_shortest_substrings(s, x)
+#output
+x = 3
+Answer: acca
+
+x = 4
+Answer: acca
+
+x = 5
+Answer: bccdb cdbac
+
+x = 6
+Answer: abccdba
+
+x = 7
+Answer: abccdba
+
+x = 8
+Answer: not-found
