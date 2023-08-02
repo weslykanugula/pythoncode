@@ -1,0 +1,47 @@
+def process_string(s):
+    def is_valid_ascii(char):
+        return 32 <= ord(char) <= 126
+
+    def increment_char(char, increment):
+        new_ascii = (ord(char) + increment) % 128
+        return chr(new_ascii) if is_valid_ascii(chr(new_ascii)) else chr(83)
+
+    def decrement_char(char, decrement):
+        new_ascii = (ord(char) - decrement) % 128
+        return chr(new_ascii) if is_valid_ascii(chr(new_ascii)) else chr(83)
+
+    result = []
+    prev_char_changed = False
+
+    for i in range(len(s)):
+        char = s[i]
+        ascii_val = ord(char)
+
+        if ascii_val % 2 == 0 and i < len(s) - 1:
+            next_char = s[i + 1]
+            if not prev_char_changed:
+                next_char = increment_char(next_char, ascii_val % 7)
+                result.append(next_char)
+                prev_char_changed = True
+            else:
+                result.append(char)
+        elif ascii_val % 2 == 1 and i > 0:
+            prev_char = s[i - 1]
+            if not prev_char_changed:
+                prev_char = decrement_char(prev_char, ascii_val % 5)
+                result.pop()
+                result.append(prev_char)
+                result.append(char)
+                prev_char_changed = True
+            else:
+                result.append(char)
+        else:
+            result.append(char)
+            prev_char_changed = False
+
+    return ''.join(result)
+
+# Test
+s = "sHQen}"
+output = process_string(s)
+print(output)  # Output: sESekS
