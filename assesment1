@@ -1,0 +1,45 @@
+def find_shortest_substrings(s, x):
+    substrings = []
+    for i in range(len(s)):
+        for j in range(i + x - 1, len(s)):
+            if s[i] == s[j]:
+                length = j - i + 1
+                if length >= x:
+                    substrings.append(s[i:j + 1])
+    return substrings
+
+
+def print_shortest_substrings(s, x):
+    substrings = find_shortest_substrings(s, x)
+    if substrings:
+        print(' '.join(substrings))
+    else:
+        print('not-found')
+
+
+
+s = "abccdbacca"
+
+x = 3
+print("x =", x)
+print_shortest_substrings(s, x)
+
+x = 4
+print("\nx =", x)
+print_shortest_substrings(s, x)
+
+x = 5
+print("\nx =", x)
+print_shortest_substrings(s, x)
+
+x = 6
+print("\nx =", x)
+print_shortest_substrings(s, x)
+
+x = 7
+print("\nx =", x)
+print_shortest_substrings(s, x)
+
+x = 8
+print("\nx =", x)
+print_shortest_substrings(s, x)
